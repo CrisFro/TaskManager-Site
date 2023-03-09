@@ -2,7 +2,7 @@
 
 <form>
   <div class="mb-3">
-    <label for="comments" class="form-control">Título</label>
+    <label for="comments" class="form-label">Título</label>
     <input
       type="text"
       class="form-control"
@@ -10,9 +10,10 @@
       name="comments"
     />
   </div>
+
   <div class="mb-3">
       <label for="taskTypeId" class="form-label">Prioridade *</label>
-      <select required="required"
+      <select
         type="text"
         class="form-control"
         name="taskTypeId"
@@ -50,22 +51,23 @@
           {{ status.statusOption }}
         </option>
       </select>
-      <div class="mb-3" *ngIf="status == 'Concluído'">
-        <label *ngIf="status == 'Concluído'" for="endDate" class="form-control">Data final</label>
-        <input
-          type="datetime-local"
-          class="form-date"
-          [(ngModel)]="endDate"
-          name="endDate"
-        />
-      </div>
     </div>
-
-    <div class="mb-4">
-      <label for="initialDate" class="form-control">Data da criação</label>
+    <div class="mb-3" *ngIf="status == 'Concluído'">
+      <label for="endDate" class="form-label">Data final</label>
       <input
         type="datetime-local"
-        class="mat-form-field-appearance-outline"
+        class="form-control"
+        [(ngModel)]="endDate"
+        name="endDate"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="initialDate" class="form-label">Data da criação</label>
+      <input
+        *ngIf="status == 'Concluído'" disabled=""
+        type="datetime-local"
+        class="form-control"
         [(ngModel)]="initialDate"
         name="initialDate"
       />
