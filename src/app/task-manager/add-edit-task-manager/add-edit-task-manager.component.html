@@ -65,7 +65,14 @@
     <div class="mb-3">
       <label for="initialDate" class="form-label">Data da criação</label>
       <input
-        *ngIf="status == 'Concluído'" disabled=""
+        *ngIf="status == 'Concluído'" disabled
+        type="datetime-local"
+        class="form-control"
+        [(ngModel)]="initialDate"
+        name="initialDate"
+      />
+      <input
+        *ngIf="status != 'Concluído'"
         type="datetime-local"
         class="form-control"
         [(ngModel)]="initialDate"

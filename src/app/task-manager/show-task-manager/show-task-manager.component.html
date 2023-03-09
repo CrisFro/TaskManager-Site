@@ -65,8 +65,8 @@
       <td *ngIf="item.status == 'Em Aberto'"><span class="badge bg-success">{{ item.status }}</span></td>
 
       <td>{{ item.initialDate | date: "dd/MM/yyyy HH:mm"}}</td>
-      <td *ngIf="item.endDate != null">{{ item.endDate | date: "dd/MM/yyyy HH:mm"}}</td>
-      <td *ngIf="item.endDate == null"><span class="badge bg-secondary">Ainda em aberto</span></td>
+      <td *ngIf="item.status != 'Em Aberto'">{{ item.endDate | date: "dd/MM/yyyy HH:mm"}}</td>
+      <td *ngIf="item.status == 'Em Aberto'"><span class="badge bg-secondary">Ainda em aberto</span></td>
 
 
       <td>
@@ -87,6 +87,7 @@
     </tr>
 
 </table>
+
 
 
 <!-- Add or Update Modal Task-->
