@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<form>
+  <div class="mb-3">
+    <label for="comments" class="form-control">Título</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="comments"
+      name="comments"
+    />
+  </div>
+  <div class="mb-3">
+      <label for="taskTypeId" class="form-label">Prioridade *</label>
+      <select required="required"
+        type="text"
+        class="form-control"
+        name="taskTypeId"
+        [(ngModel)]="taskTypeId"
+        *ngIf="task.id != 0">
+        <option *ngFor="let type of taskTypeList$ | async" [value]="type.id">
+          {{ type.nameTask }}
+        </option>
+      </select>
+      <select
+        name="taskTypeId"
+        id="taskTypeId"
+        class="form-control"
+        [(ngModel)]="taskTypeId"
+        *ngIf="task.id == 0"
+      >
+        <option *ngFor="let type of taskTypeList$ | async" [value]="type.id">
+          {{ type.nameTask }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status *</label>
+      <select
+        name="status"
+        id="status"
+        class="form-control"
+        [(ngModel)]="status"
+      >
+        <option
+          *ngFor="let status of statusList$ | async"
+          [value]="status.statusOption"
+        >
+          {{ status.statusOption }}
+        </option>
+      </select>
+      <div class="mb-3" *ngIf="status == 'Concluído'">
+        <label *ngIf="status == 'Concluído'" for="endDate" class="form-control">Data final</label>
+        <input
+          type="datetime-local"
+          class="form-date"
+          [(ngModel)]="endDate"
+          name="endDate"
+        />
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="initialDate" class="form-control">Data da criação</label>
+      <input
+        type="datetime-local"
+        class="mat-form-field-appearance-outline"
+        [(ngModel)]="initialDate"
+        name="initialDate"
+      />
+    </div>
+
+    <button (click)="addTask()" *ngIf="task.id == 0" class="btn btn-primary">
+      Adicionar
+    </button>
+    <button (click)="updateTask()" *ngIf="task.id != 0" class="btn btn-primary">
+      Editar
+    </button>
+</form>
+
+
+
